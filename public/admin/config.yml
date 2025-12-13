@@ -1,3 +1,10 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
 collections:
   - name: "home_id"
     label: "Homepage (Indonesia)"
@@ -13,7 +20,7 @@ collections:
       - { label: "Bahasa", name: "lang", widget: "hidden", default: "id" }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Subtitle", name: "subtitle", widget: "string" }
-      - { label: "Hero Image", name: "heroImage", widget: "image", default: "/default-hero.jpg" }
+      - { label: "Hero Image", name: "heroImage", widget: "image" }
       - { label: "Body", name: "body", widget: "markdown" }
 
   - name: "home_en"
@@ -30,5 +37,5 @@ collections:
       - { label: "Language", name: "lang", widget: "hidden", default: "en" }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Subtitle", name: "subtitle", widget: "string" }
-      - { label: "Hero Image", name: "heroImage", widget: "image", default: "/default-hero.jpg" }
+      - { label: "Hero Image", name: "heroImage", widget: "image" }
       - { label: "Body", name: "body", widget: "markdown" }
