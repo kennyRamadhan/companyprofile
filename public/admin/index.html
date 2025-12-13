@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <title>Decap CMS</title>
+    <script>
+        // Beritahu CMS agar tidak jalan otomatis
+        window.CMS_MANUAL_INIT = true;
+      </script>
 
     <!-- PENTING: gunakan file bundle yang benar -->
     <script src="https://unpkg.com/decap-cms@3.9.0/dist/decap-cms.js"></script>
@@ -11,7 +15,7 @@
   <body>
     <!-- Wajib pakai init seperti ini -->
     <script>
-      window.CMS = window.CMS || {};
+     
       CMS.init();
     </script>
   </body>
