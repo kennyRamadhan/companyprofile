@@ -1,31 +1,34 @@
-backend:
-  name: git-gateway
-  branch: main
-
-media_folder: "public/uploads"
-public_folder: "/uploads"
-
 collections:
-  # Bahasa Indonesia
   - name: "home_id"
-    label: "Homepage (ID)"
-    folder: "content/id"
+    label: "Homepage (Indonesia)"
+    folder: "content"
     create: false
-    slug: "home"
     extension: "md"
+    format: "frontmatter"
+    identifier_field: "title"
+    filter:
+      field: "lang"
+      value: "id"
     fields:
-      - { label: "Judul", name: "title", widget: "string" }
-      - { label: "Subjudul", name: "subtitle", widget: "string" }
-      - { label: "CTA", name: "cta", widget: "string" }
-
-  # Bahasa Inggris
-  - name: "home_en"
-    label: "Homepage (EN)"
-    folder: "content/en"
-    create: false
-    slug: "home"
-    extension: "md"
-    fields:
+      - { label: "Bahasa", name: "lang", widget: "hidden", default: "id" }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Subtitle", name: "subtitle", widget: "string" }
-      - { label: "CTA", name: "cta", widget: "string" }
+      - { label: "Hero Image", name: "heroImage", widget: "image", default: "/default-hero.jpg" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "home_en"
+    label: "Homepage (English)"
+    folder: "content"
+    create: false
+    extension: "md"
+    format: "frontmatter"
+    identifier_field: "title"
+    filter:
+      field: "lang"
+      value: "en"
+    fields:
+      - { label: "Language", name: "lang", widget: "hidden", default: "en" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Subtitle", name: "subtitle", widget: "string" }
+      - { label: "Hero Image", name: "heroImage", widget: "image", default: "/default-hero.jpg" }
+      - { label: "Body", name: "body", widget: "markdown" }
