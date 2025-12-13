@@ -1,8 +1,8 @@
 ---
-lang: "en"
-title: "Bangun Jaya Abadi"
-subtitle: "Professional construction, renovation, and architectural services"
-heroImage: "/default-hero.jpg"
+lang: en
+title: Bangun Jaya Abadi
+subtitle: Professional construction, renovation, and architectural services
+heroImage: /uploads/grey-minimalist-corporate-personal-profile-linkedin-banner.png
 ---
 
 Welcome to Bangun Jaya Abadi.
