@@ -1,36 +1,39 @@
-import { GetStaticProps } from "next";
-import { getPageContent } from "../../lib/contentLoader";
+import Head from "next/head";
 import Navbar from "../../components/Navbar";
+import Hero from "../../components/Hero";
+import About from "../../components/About";
+import Stats from "../../components/Stats";
+import Services from "../../components/Services";
+import Projects from "../../components/Projects";
+import WhyChooseUs from "../../components/WhyChooseUs";
+import Testimonials from "../../components/Testimonials";
+import Contact from "../../components/Contact";
+import Footer from "../../components/Footer";
 
-export default function HomeID({ data }: any) {
+export default function HomeEN() {
+  const lang = "en";
+
   return (
     <>
-      <Navbar />
-
-      <section className="px-6 py-10">
-        <h1 className="text-4xl font-bold">{data.frontmatter.title}</h1>
-        <p className="text-lg text-gray-600">{data.frontmatter.subtitle}</p>
-
-        <img
-          src={data.frontmatter.heroImage}
-          className="w-full h-80 object-cover mt-6 rounded-lg shadow"
+      <Head>
+        <title>Bangun Jaya Abadi — Construction, Renovation &amp; Architectural Design</title>
+        <meta
+          name="description"
+          content="Bangun Jaya Abadi is a trusted construction company providing professional construction, renovation, and architectural design services in Indonesia."
         />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
 
-        <article
-          className="prose max-w-none mt-8"
-          dangerouslySetInnerHTML={{ __html: data.contentHtml }}
-        />
-      </section>
+      <Navbar lang={lang} />
+      <Hero lang={lang} />
+      <Stats lang={lang} />
+      <About lang={lang} />
+      <Services lang={lang} />
+      <Projects lang={lang} />
+      <WhyChooseUs lang={lang} />
+      <Testimonials lang={lang} />
+      <Contact lang={lang} />
+      <Footer lang={lang} />
     </>
   );
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  const data = await getPageContent("en");
-
-  return {
-    props: {
-      data,
-    },
-  };
-};
