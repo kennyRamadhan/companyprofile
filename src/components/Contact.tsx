@@ -232,7 +232,7 @@ export default function Contact({ lang }: ContactProps) {
 
               <button
                 type="submit"
-                className="w-full sm:w-auto px-8 py-3.5 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg shadow-amber-600/25"
+                className="w-full sm:w-auto px-8 py-3.5 bg-amber-700 hover:bg-amber-800 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg shadow-amber-700/25"
               >
                 {t.form.submit}
               </button>

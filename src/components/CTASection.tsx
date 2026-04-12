@@ -66,7 +66,7 @@ export default function CTASection({ lang }: CTASectionProps) {
           </p>
           <a
             href="#contact"
-            className="inline-flex items-center justify-center px-10 py-4 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg transition-colors duration-200 text-lg shadow-lg shadow-amber-600/30"
+            className="inline-flex items-center justify-center px-10 py-4 bg-amber-700 hover:bg-amber-800 text-white font-bold rounded-lg transition-colors duration-200 text-lg shadow-lg shadow-amber-700/30"
           >
             {t.cta}
           </a>

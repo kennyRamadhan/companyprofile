@@ -36,7 +36,7 @@ export default function Hero({ lang }: HeroProps) {
           className="object-cover"
           priority
           sizes="100vw"
-          quality={60}
+          quality={50}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-primary-900/80 via-primary-900/70 to-primary-900/80" />
       </div>
@@ -59,7 +59,7 @@ export default function Hero({ lang }: HeroProps) {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="#contact"
-            className="inline-flex items-center justify-center px-8 py-4 min-h-[44px] bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-lg transition-colors duration-200 text-lg shadow-lg shadow-amber-600/25"
+            className="inline-flex items-center justify-center px-8 py-4 min-h-[44px] bg-amber-700 hover:bg-amber-800 text-white font-semibold rounded-lg transition-colors duration-200 text-lg shadow-lg shadow-amber-700/25"
           >
             {t.ctaPrimary}
           </a>

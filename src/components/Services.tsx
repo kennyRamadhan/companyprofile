@@ -185,7 +185,7 @@ export default function Services({ lang }: ServicesProps) {
           {t.services.map((service, i) => (
             <div
               key={i}
-              className={`fade-in-up stagger-${i + 1} bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 dark:border-slate-700 group`}
+              className={`fade-in-up stagger-${i + 1} bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 border border-slate-100 dark:border-slate-700 group`}
             >
               {/* Image */}
               <div className="relative h-48 overflow-hidden">

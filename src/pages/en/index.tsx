@@ -2,31 +2,17 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 import Navbar from "../../components/Navbar";
 import Hero from "../../components/Hero";
-import About from "../../components/About";
-import Stats from "../../components/Stats";
 
 // Below-the-fold components — lazy loaded for faster initial paint
-const Services = dynamic(() => import("../../components/Services"), {
-  loading: () => <div className="h-96 animate-pulse bg-gray-100 dark:bg-gray-800" />,
-});
-const Projects = dynamic(() => import("../../components/Projects"), {
-  loading: () => <div className="h-96 animate-pulse bg-gray-100 dark:bg-gray-800" />,
-});
-const WhyChooseUs = dynamic(() => import("../../components/WhyChooseUs"), {
-  loading: () => <div className="h-64 animate-pulse bg-gray-100 dark:bg-gray-800" />,
-});
-const Testimonials = dynamic(() => import("../../components/Testimonials"), {
-  loading: () => <div className="h-64 animate-pulse bg-gray-100 dark:bg-gray-800" />,
-});
-const CTASection = dynamic(() => import("../../components/CTASection"), {
-  loading: () => <div className="h-48 animate-pulse bg-gray-100 dark:bg-gray-800" />,
-});
-const Contact = dynamic(() => import("../../components/Contact"), {
-  loading: () => <div className="h-96 animate-pulse bg-gray-100 dark:bg-gray-800" />,
-});
-const Footer = dynamic(() => import("../../components/Footer"), {
-  loading: () => <div className="h-48 animate-pulse bg-gray-900" />,
-});
+const About = dynamic(() => import("../../components/About"));
+const Stats = dynamic(() => import("../../components/Stats"));
+const Services = dynamic(() => import("../../components/Services"));
+const Projects = dynamic(() => import("../../components/Projects"));
+const WhyChooseUs = dynamic(() => import("../../components/WhyChooseUs"));
+const Testimonials = dynamic(() => import("../../components/Testimonials"));
+const CTASection = dynamic(() => import("../../components/CTASection"));
+const Contact = dynamic(() => import("../../components/Contact"));
+const Footer = dynamic(() => import("../../components/Footer"));
 
 export default function HomeEN() {
   const lang = "en";
