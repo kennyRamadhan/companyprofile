@@ -33,7 +33,7 @@ const contactData = {
       messagePlaceholder: "Ceritakan detail kebutuhan proyek Anda...",
       submit: "Kirim Permintaan",
     },
-    nextRedirect: "/id?submitted=true",
+    nextRedirect: "/id",
   },
   en: {
     sectionLabel: "Contact Us",
@@ -63,7 +63,7 @@ const contactData = {
       messagePlaceholder: "Tell us about your project requirements...",
       submit: "Submit Request",
     },
-    nextRedirect: "/en?submitted=true",
+    nextRedirect: "/en",
   },
 };
 
@@ -153,7 +153,8 @@ export default function Contact({ lang }: ContactProps) {
             >
               <input type="hidden" name="_subject" value="Pesan Baru dari Website Syah Construction" />
               <input type="hidden" name="_captcha" value="true" />
-              <input type="hidden" name="_next" value={t.nextRedirect} />
+              <input type="hidden" name="_next" value={`https://companyprofile-eosin-phi.vercel.app${t.nextRedirect}`} />
+              <input type="hidden" name="_template" value="table" />
 
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
