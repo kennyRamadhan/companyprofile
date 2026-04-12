@@ -6,16 +6,16 @@ interface StatsProps {
 
 const statsData = {
   id: [
-    { value: 10, suffix: "+", label: "Tahun Pengalaman" },
-    { value: 150, suffix: "+", label: "Proyek Selesai" },
-    { value: 120, suffix: "+", label: "Klien Puas" },
-    { value: 50, suffix: "+", label: "Tim Profesional" },
+    { value: 5, suffix: "+", label: "Tahun Pengalaman" },
+    { value: 30, suffix: "+", label: "Proyek Diselesaikan" },
+    { value: 20, suffix: "+", label: "Klien Puas" },
+    { value: 15, suffix: "+", label: "Tim Profesional" },
   ],
   en: [
-    { value: 10, suffix: "+", label: "Years Experience" },
-    { value: 150, suffix: "+", label: "Projects Completed" },
-    { value: 120, suffix: "+", label: "Happy Clients" },
-    { value: 50, suffix: "+", label: "Professional Team" },
+    { value: 5, suffix: "+", label: "Years of Experience" },
+    { value: 30, suffix: "+", label: "Projects Delivered" },
+    { value: 20, suffix: "+", label: "Satisfied Clients" },
+    { value: 15, suffix: "+", label: "Professional Team" },
   ],
 };
 
@@ -63,7 +63,7 @@ export default function Stats({ lang }: StatsProps) {
   const stats = statsData[lang];
 
   return (
-    <section className="bg-primary py-16">
+    <section className="bg-primary dark:bg-gray-950 py-16 transition-colors duration-300">
       <div className="container-max px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((stat, i) => (

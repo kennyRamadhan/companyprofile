@@ -1,29 +1,28 @@
 ---
 lang: en
-title: Bangun Jaya Abadi
-subtitle: Building with Quality, Standing Forever
-heroImage: /images/hero-bg.jpg
-description: Your trusted partner in professional construction, renovation, and architectural design. Over a decade of experience turning dreams into reality.
+title: Syah Construction
+subtitle: Building Trust, Realizing Dreams
+heroImage: /images/pabrik_2.jpeg
+description: Professional construction, renovation, and architectural design solutions for your dream project.
 ---
 
-## About Bangun Jaya Abadi
+## About Syah Construction
 
-Bangun Jaya Abadi is a construction company dedicated to providing high-quality building services in Indonesia. Founded with a passion for delivering the best results, we have completed over 150 projects across various sectors.
+Syah Construction is a construction company dedicated to providing quality building services in Indonesia. Founded in 2021 with a passion for delivering the best results, we have completed over 30 projects across various sectors, from commercial to industrial.
 
 ### Our Services
 
-- **Building Construction** — Construction of commercial, residential, and industrial buildings
-- **Renovation & Remodeling** — Renovation of homes, offices, and commercial buildings
+- **Building Construction** — Construction of commercial and industrial buildings with high quality standards
+- **Renovation & Remodeling** — Renovation of homes, offices, factories, and commercial buildings
 - **Architectural Design** — Modern architectural planning and design
-- **Interior Design** — Professional interior design for residential and commercial spaces
 - **Project Management** — Project management from planning to handover
 - **Engineering Consultation** — Structural, MEP, and feasibility study consultation
 
 ### Why Choose Us
 
-- Over 10 years of experience in the construction industry
-- Professional team with national and international certifications
+- Experience since 2021 handling various project scales
+- Experienced professional team with high competence
 - Commitment to on-time and on-budget delivery
-- Quality materials from trusted suppliers
-- Warranty for every job
-- Free consultation for your projects
+- SNI-standard and high-quality materials
+- Work result guarantee for client satisfaction
+- Free consultation to understand your needs

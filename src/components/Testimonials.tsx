@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+
 interface TestimonialsProps {
   lang: "id" | "en";
 }
@@ -5,62 +7,50 @@ interface TestimonialsProps {
 const content = {
   id: {
     sectionLabel: "Testimoni",
-    title: "Apa Kata Klien Kami",
-    subtitle: "Kepuasan klien adalah prioritas utama kami",
+    title: "Kepercayaan Klien Adalah Prioritas Kami",
+    subtitle: "Apa kata mereka tentang pengalaman bekerja bersama Syah Construction",
     testimonials: [
       {
         name: "Budi Santoso",
         role: "Direktur, PT Maju Bersama",
-        text: "Bangun Jaya Abadi sangat profesional dalam menangani proyek pembangunan kantor kami. Hasilnya melampaui ekspektasi dan selesai tepat waktu. Sangat merekomendasikan!",
+        text: "Syah Construction menyelesaikan proyek renovasi pabrik kami tepat waktu dengan kualitas yang melebihi ekspektasi. Profesionalisme tim mereka sangat kami apresiasi.",
         rating: 5,
       },
       {
-        name: "Siti Rahayu",
-        role: "Pemilik Rumah, Pondok Indah",
-        text: "Proses renovasi rumah kami berjalan sangat lancar. Tim mereka komunikatif, rapih, dan hasilnya luar biasa. Rumah kami sekarang terasa seperti baru!",
+        name: "Sari Dewi",
+        role: "Owner, Rumah Tinggal",
+        text: "Proses renovasi rumah kami berjalan lancar dari awal hingga serah terima. Hasil akhirnya persis sesuai desain yang dijanjikan.",
         rating: 5,
       },
       {
-        name: "Ahmad Wijaya",
-        role: "GM Operations, PT Logistik Nusantara",
-        text: "Pembangunan gudang kami ditangani dengan sangat baik. Kualitas bangunan excellent dan mereka sangat memperhatikan detail keselamatan kerja.",
-        rating: 5,
-      },
-      {
-        name: "Diana Putri",
-        role: "Owner, Boutique Hotel Menteng",
-        text: "Renovasi hotel kami dikerjakan dengan penuh dedikasi. Desain yang mereka usulkan sangat modern dan sesuai dengan visi kami. Tamu hotel sangat puas dengan hasilnya.",
+        name: "Hendra Wijaya",
+        role: "GM Operations, Polyarome",
+        text: "Dari desain 3D hingga eksekusi akhir, semuanya ditangani dengan profesional. Kantor kami berubah total dan mendukung citra brand kami.",
         rating: 5,
       },
     ],
   },
   en: {
     sectionLabel: "Testimonials",
-    title: "What Our Clients Say",
-    subtitle: "Client satisfaction is our top priority",
+    title: "Client Trust Is Our Top Priority",
+    subtitle: "What our clients say about working with Syah Construction",
     testimonials: [
       {
         name: "Budi Santoso",
         role: "Director, PT Maju Bersama",
-        text: "Bangun Jaya Abadi was very professional in handling our office building project. The result exceeded expectations and was completed on time. Highly recommended!",
+        text: "Syah Construction completed our factory renovation on time with quality that exceeded our expectations. We truly appreciate the professionalism of their team.",
         rating: 5,
       },
       {
-        name: "Siti Rahayu",
-        role: "Homeowner, Pondok Indah",
-        text: "Our home renovation process went very smoothly. Their team was communicative, neat, and the results were amazing. Our house now feels brand new!",
+        name: "Sari Dewi",
+        role: "Owner, Residential House",
+        text: "Our home renovation went smoothly from start to handover. The final result matched the promised design exactly.",
         rating: 5,
       },
       {
-        name: "Ahmad Wijaya",
-        role: "GM Operations, PT Logistik Nusantara",
-        text: "Our warehouse construction was handled very well. The building quality is excellent and they paid great attention to workplace safety details.",
-        rating: 5,
-      },
-      {
-        name: "Diana Putri",
-        role: "Owner, Boutique Hotel Menteng",
-        text: "Our hotel renovation was done with full dedication. The design they proposed was very modern and aligned with our vision. Hotel guests are very satisfied with the results.",
+        name: "Hendra Wijaya",
+        role: "GM Operations, Polyarome",
+        text: "From 3D design to final execution, everything was handled professionally. Our office was completely transformed and now reinforces our brand image.",
         rating: 5,
       },
     ],
@@ -86,26 +76,45 @@ function StarRating({ rating }: { rating: number }) {
 
 export default function Testimonials({ lang }: TestimonialsProps) {
   const t = content[lang];
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.querySelectorAll(".fade-in-up").forEach((el) => {
+              el.classList.add("visible");
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section id="testimonials" className="section-padding bg-slate-50">
+    <section id="testimonials" ref={sectionRef} className="section-padding bg-slate-50 dark:bg-gray-900 transition-colors duration-300">
       <div className="container-max">
         {/* Section header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 fade-in-up">
           <span className="text-secondary font-semibold text-sm tracking-widest uppercase">
             {t.sectionLabel}
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mt-2">{t.title}</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-primary dark:text-white mt-2">{t.title}</h2>
           <div className="w-20 h-1 bg-secondary mx-auto mt-4" />
-          <p className="text-slate-500 mt-4 max-w-2xl mx-auto">{t.subtitle}</p>
+          <p className="text-slate-500 dark:text-slate-400 mt-4 max-w-2xl mx-auto">{t.subtitle}</p>
         </div>
 
         {/* Testimonial cards */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
           {t.testimonials.map((testimonial, i) => (
             <div
               key={i}
-              className="bg-white rounded-xl p-8 shadow-sm border border-slate-100 relative"
+              className={`fade-in-up stagger-${i + 1} bg-white dark:bg-slate-800 rounded-xl p-8 shadow-sm border border-slate-100 dark:border-slate-700 relative`}
             >
               {/* Quote icon */}
               <svg
@@ -117,7 +126,7 @@ export default function Testimonials({ lang }: TestimonialsProps) {
               </svg>
 
               <StarRating rating={testimonial.rating} />
-              <p className="text-slate-600 mt-4 mb-6 leading-relaxed italic">
+              <p className="text-slate-600 dark:text-slate-300 mt-4 mb-6 leading-relaxed italic">
                 &ldquo;{testimonial.text}&rdquo;
               </p>
               <div className="flex items-center gap-3">
@@ -125,8 +134,8 @@ export default function Testimonials({ lang }: TestimonialsProps) {
                   {testimonial.name.charAt(0)}
                 </div>
                 <div>
-                  <p className="font-bold text-primary">{testimonial.name}</p>
-                  <p className="text-sm text-slate-500">{testimonial.role}</p>
+                  <p className="font-bold text-primary dark:text-white">{testimonial.name}</p>
+                  <p className="text-sm text-slate-500 dark:text-slate-400">{testimonial.role}</p>
                 </div>
               </div>
             </div>

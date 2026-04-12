@@ -1,24 +1,16 @@
-import { useState, FormEvent } from "react";
+﻿import { useEffect, useRef } from "react";
 
 interface ContactProps {
   lang: "id" | "en";
 }
 
-const content = {
+const contactData = {
   id: {
     sectionLabel: "Hubungi Kami",
-    title: "Mari Diskusikan Proyek Anda",
-    subtitle: "Hubungi kami untuk konsultasi gratis dan dapatkan penawaran terbaik",
-    info: {
-      addressLabel: "Alamat Kantor",
-      address: "Jl. Jend. Sudirman Kav. 52-53, Jakarta Selatan 12190",
-      phoneLabel: "Telepon",
-      phone: "(021) 5555-8888",
-      emailLabel: "Email",
-      email: "info@bangunjayaabadi.com",
-      hoursLabel: "Jam Operasional",
-      hours: "Senin - Sabtu, 08:00 - 17:00 WIB",
-    },
+    title: "Diskusikan Proyek Anda Hari Ini",
+    subtitle: "Tim kami siap membantu Anda merencanakan dan mengeksekusi proyek dengan hasil terbaik.",
+    address: "Jl. Durian 1 Blok T2 No.27, Lubangbuaya, Kec. Setu, Kab. Bekasi, Jawa Barat 17320",
+    viewMap: "Lihat di Google Maps",
     form: {
       nameLabel: "Nama Lengkap",
       namePlaceholder: "Masukkan nama Anda",
@@ -26,36 +18,29 @@ const content = {
       emailPlaceholder: "Masukkan email Anda",
       phoneLabel: "Nomor Telepon",
       phonePlaceholder: "Masukkan nomor telepon",
-      subjectLabel: "Subjek",
-      subjectPlaceholder: "Pilih subjek",
+      subjectLabel: "Jenis Layanan",
+      subjectPlaceholder: "Pilih jenis layanan",
       subjectOptions: [
-        "Konsultasi Proyek Baru",
+        "Konstruksi Bangunan",
         "Renovasi & Remodeling",
         "Desain Arsitektur",
-        "Penawaran Harga",
+        "Interior Design",
+        "Manajemen Proyek",
+        "Konsultasi Teknik",
         "Lainnya",
       ],
-      messageLabel: "Pesan",
-      messagePlaceholder: "Ceritakan kebutuhan proyek Anda...",
-      submit: "Kirim Pesan",
-      sending: "Mengirim...",
-      success: "Pesan berhasil dikirim! Kami akan menghubungi Anda segera.",
+      messageLabel: "Detail Proyek",
+      messagePlaceholder: "Ceritakan detail kebutuhan proyek Anda...",
+      submit: "Kirim Permintaan",
     },
+    nextRedirect: "/id?submitted=true",
   },
   en: {
     sectionLabel: "Contact Us",
-    title: "Let's Discuss Your Project",
-    subtitle: "Contact us for a free consultation and get the best offer",
-    info: {
-      addressLabel: "Office Address",
-      address: "Jl. Jend. Sudirman Kav. 52-53, South Jakarta 12190",
-      phoneLabel: "Phone",
-      phone: "(021) 5555-8888",
-      emailLabel: "Email",
-      email: "info@bangunjayaabadi.com",
-      hoursLabel: "Operating Hours",
-      hours: "Monday - Saturday, 08:00 - 17:00 WIB",
-    },
+    title: "Let\u2019s Discuss Your Project Today",
+    subtitle: "Our team is ready to help you plan and execute your project for the best results.",
+    address: "Jl. Durian 1 Blok T2 No.27, Lubangbuaya, Kec. Setu, Kab. Bekasi, Jawa Barat 17320",
+    viewMap: "View on Google Maps",
     form: {
       nameLabel: "Full Name",
       namePlaceholder: "Enter your name",
@@ -63,186 +48,195 @@ const content = {
       emailPlaceholder: "Enter your email",
       phoneLabel: "Phone Number",
       phonePlaceholder: "Enter your phone number",
-      subjectLabel: "Subject",
-      subjectPlaceholder: "Select a subject",
+      subjectLabel: "Service Type",
+      subjectPlaceholder: "Select a service",
       subjectOptions: [
-        "New Project Consultation",
+        "Building Construction",
         "Renovation & Remodeling",
         "Architectural Design",
-        "Price Quote",
+        "Interior Design",
+        "Project Management",
+        "Engineering Consultation",
         "Other",
       ],
-      messageLabel: "Message",
-      messagePlaceholder: "Tell us about your project needs...",
-      submit: "Send Message",
-      sending: "Sending...",
-      success: "Message sent successfully! We will contact you shortly.",
+      messageLabel: "Project Details",
+      messagePlaceholder: "Tell us about your project requirements...",
+      submit: "Submit Request",
     },
+    nextRedirect: "/en?submitted=true",
   },
 };
 
-export default function Contact({ lang }: ContactProps) {
-  const t = content[lang];
-  const [submitted, setSubmitted] = useState(false);
+const MAPS_EMBED_URL =
+  "https://maps.google.com/maps?q=Jl.+Durian+1+Blok+T2+No.27+Lubangbuaya+Setu+Bekasi&t=&z=15&ie=UTF8&iwloc=&output=embed";
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
+const MAPS_LINK = "https://maps.app.goo.gl/b8aMefPvEgRnznn16";
+
+export default function Contact({ lang }: ContactProps) {
+  const t = contactData[lang];
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target
+              .querySelectorAll(".fade-in-up, .fade-in-left, .fade-in-right")
+              .forEach((el) => el.classList.add("visible"));
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.05 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section id="contact" className="section-padding bg-white">
+    <section id="contact" ref={sectionRef} className="section-padding bg-white dark:bg-gray-900 transition-colors duration-300">
       <div className="container-max">
         {/* Section header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 fade-in-up">
           <span className="text-secondary font-semibold text-sm tracking-widest uppercase">
             {t.sectionLabel}
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mt-2">{t.title}</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-primary dark:text-white mt-2">
+            {t.title}
+          </h2>
           <div className="w-20 h-1 bg-secondary mx-auto mt-4" />
-          <p className="text-slate-500 mt-4 max-w-2xl mx-auto">{t.subtitle}</p>
+          <p className="text-slate-500 dark:text-slate-400 mt-4 max-w-2xl mx-auto">{t.subtitle}</p>
         </div>
 
-        <div className="grid lg:grid-cols-5 gap-12">
-          {/* Contact Info */}
-          <div className="lg:col-span-2 space-y-8">
-            {/* Address */}
-            <div className="flex gap-4">
-              <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center text-secondary flex-shrink-0">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </div>
-              <div>
-                <h4 className="font-semibold text-primary">{t.info.addressLabel}</h4>
-                <p className="text-slate-500 text-sm mt-1">{t.info.address}</p>
-              </div>
+        <div className="grid lg:grid-cols-2 gap-10">
+          {/* Google Maps */}
+          <div className="fade-in-left">
+            <div className="rounded-xl overflow-hidden shadow-md">
+              <iframe
+                src={MAPS_EMBED_URL}
+                width="100%"
+                height="400"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Syah Construction Location"
+              />
             </div>
-
-            {/* Phone */}
-            <div className="flex gap-4">
-              <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center text-secondary flex-shrink-0">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-              </div>
-              <div>
-                <h4 className="font-semibold text-primary">{t.info.phoneLabel}</h4>
-                <p className="text-slate-500 text-sm mt-1">{t.info.phone}</p>
-              </div>
+            <div className="mt-3 flex items-start gap-2 text-sm text-slate-500 dark:text-slate-400">
+              <svg className="w-4 h-4 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span>{t.address}</span>
             </div>
-
-            {/* Email */}
-            <div className="flex gap-4">
-              <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center text-secondary flex-shrink-0">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <div>
-                <h4 className="font-semibold text-primary">{t.info.emailLabel}</h4>
-                <p className="text-slate-500 text-sm mt-1">{t.info.email}</p>
-              </div>
-            </div>
-
-            {/* Hours */}
-            <div className="flex gap-4">
-              <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center text-secondary flex-shrink-0">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <div>
-                <h4 className="font-semibold text-primary">{t.info.hoursLabel}</h4>
-                <p className="text-slate-500 text-sm mt-1">{t.info.hours}</p>
-              </div>
-            </div>
+            <a
+              href={MAPS_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 mt-3 text-sm font-semibold text-secondary hover:text-secondary-600 transition-colors"
+            >
+              {t.viewMap}
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
           </div>
 
-          {/* Contact Form */}
-          <div className="lg:col-span-3">
-            {submitted ? (
-              <div className="bg-green-50 border border-green-200 rounded-xl p-8 text-center">
-                <svg className="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <p className="text-green-700 font-semibold text-lg">{t.form.success}</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-sm font-medium text-primary mb-1.5">
-                      {t.form.nameLabel}
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder={t.form.namePlaceholder}
-                      className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-colors text-sm"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-primary mb-1.5">
-                      {t.form.emailLabel}
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      placeholder={t.form.emailPlaceholder}
-                      className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-colors text-sm"
-                    />
-                  </div>
-                </div>
+          {/* Contact Form (Formsubmit) */}
+          <div className="fade-in-right">
+            <form
+              action="https://formsubmit.co/syahconstructionpt@gmail.com"
+              method="POST"
+              className="space-y-5"
+            >
+              <input type="hidden" name="_subject" value="Pesan Baru dari Website Syah Construction" />
+              <input type="hidden" name="_captcha" value="true" />
+              <input type="hidden" name="_next" value={t.nextRedirect} />
 
-                <div className="grid sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-sm font-medium text-primary mb-1.5">
-                      {t.form.phoneLabel}
-                    </label>
-                    <input
-                      type="tel"
-                      placeholder={t.form.phonePlaceholder}
-                      className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-colors text-sm"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-primary mb-1.5">
-                      {t.form.subjectLabel}
-                    </label>
-                    <select
-                      required
-                      className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-colors text-sm text-slate-600"
-                    >
-                      <option value="">{t.form.subjectPlaceholder}</option>
-                      {t.form.subjectOptions.map((opt, i) => (
-                        <option key={i} value={opt}>{opt}</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
+              <div className="grid sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-sm font-medium text-primary mb-1.5">
-                    {t.form.messageLabel}
+                  <label htmlFor="contact-name" className="block text-sm font-medium text-primary dark:text-slate-200 mb-1.5">
+                    {t.form.nameLabel}
                   </label>
-                  <textarea
+                  <input
+                    id="contact-name"
+                    type="text"
+                    name="name"
                     required
-                    rows={5}
-                    placeholder={t.form.messagePlaceholder}
-                    className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-colors text-sm resize-none"
+                    placeholder={t.form.namePlaceholder}
+                    className="w-full px-4 py-3 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-colors text-sm bg-white dark:bg-slate-800 dark:text-white"
                   />
                 </div>
+                <div>
+                  <label htmlFor="contact-email" className="block text-sm font-medium text-primary dark:text-slate-200 mb-1.5">
+                    {t.form.emailLabel}
+                  </label>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    name="email"
+                    required
+                    placeholder={t.form.emailPlaceholder}
+                    className="w-full px-4 py-3 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-colors text-sm bg-white dark:bg-slate-800 dark:text-white"
+                  />
+                </div>
+              </div>
 
-                <button
-                  type="submit"
-                  className="w-full sm:w-auto px-8 py-3.5 bg-secondary hover:bg-secondary-600 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg shadow-secondary/25"
-                >
-                  {t.form.submit}
-                </button>
-              </form>
-            )}
+              <div className="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <label htmlFor="contact-phone" className="block text-sm font-medium text-primary dark:text-slate-200 mb-1.5">
+                    {t.form.phoneLabel}
+                  </label>
+                  <input
+                    id="contact-phone"
+                    type="tel"
+                    name="phone"
+                    placeholder={t.form.phonePlaceholder}
+                    className="w-full px-4 py-3 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-colors text-sm bg-white dark:bg-slate-800 dark:text-white"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="service-select" className="block text-sm font-medium text-primary dark:text-slate-200 mb-1.5">
+                    {t.form.subjectLabel}
+                  </label>
+                  <select
+                    id="service-select"
+                    name="service"
+                    required
+                    aria-label={t.form.subjectPlaceholder}
+                    className="w-full px-4 py-3 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-colors text-sm text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-800"
+                  >
+                    <option value="">{t.form.subjectPlaceholder}</option>
+                    {t.form.subjectOptions.map((opt, i) => (
+                      <option key={i} value={opt}>{opt}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="contact-message" className="block text-sm font-medium text-primary dark:text-slate-200 mb-1.5">
+                  {t.form.messageLabel}
+                </label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  required
+                  rows={5}
+                  placeholder={t.form.messagePlaceholder}
+                  className="w-full px-4 py-3 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-colors text-sm resize-none bg-white dark:bg-slate-800 dark:text-white"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full sm:w-auto px-8 py-3.5 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg shadow-amber-600/25"
+              >
+                {t.form.submit}
+              </button>
+            </form>
           </div>
         </div>
       </div>

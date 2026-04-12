@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://syahconstruction.netlify.app/sitemap.xml

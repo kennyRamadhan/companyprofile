@@ -1,29 +1,28 @@
 ---
 lang: id
-title: Bangun Jaya Abadi
-subtitle: Membangun dengan Kualitas, Berdiri untuk Selamanya
-heroImage: /images/hero-bg.jpg
-description: Mitra terpercaya Anda dalam konstruksi, renovasi, dan desain arsitektur profesional. Lebih dari satu dekade pengalaman membangun impian menjadi kenyataan.
+title: Syah Construction
+subtitle: Membangun Kepercayaan, Mewujudkan Impian
+heroImage: /images/pabrik_2.jpeg
+description: Solusi konstruksi, renovasi, dan desain arsitektur profesional untuk proyek impian Anda.
 ---
 
-## Tentang Bangun Jaya Abadi
+## Tentang Syah Construction
 
-Bangun Jaya Abadi adalah perusahaan konstruksi yang berdedikasi untuk menyediakan layanan pembangunan berkualitas tinggi di Indonesia. Didirikan dengan semangat untuk memberikan hasil terbaik, kami telah menyelesaikan lebih dari 150 proyek di berbagai sektor.
+Syah Construction adalah perusahaan konstruksi yang berdedikasi untuk menyediakan layanan pembangunan berkualitas di Indonesia. Didirikan pada tahun 2021 dengan semangat untuk memberikan hasil terbaik, kami telah menyelesaikan lebih dari 30 proyek di berbagai sektor, mulai dari komersial hingga industrial.
 
 ### Layanan Kami
 
-- **Konstruksi Bangunan** — Pembangunan gedung komersial, residensial, dan industrial
-- **Renovasi & Remodeling** — Renovasi rumah, kantor, dan bangunan komersial
+- **Konstruksi Bangunan** — Pembangunan hunian komersial dan industrial dengan standar kualitas tinggi
+- **Renovasi & Remodeling** — Renovasi rumah, kantor, pabrik, dan bangunan komersial
 - **Desain Arsitektur** — Perencanaan dan desain arsitektur modern
-- **Interior Design** — Desain interior profesional untuk hunian dan komersial
 - **Manajemen Proyek** — Pengelolaan proyek dari perencanaan hingga serah terima
 - **Konsultasi Teknik** — Konsultasi struktur, MEP, dan feasibility study
 
 ### Mengapa Memilih Kami
 
-- Pengalaman lebih dari 10 tahun di industri konstruksi
-- Tim profesional bersertifikasi nasional dan internasional
+- Pengalaman sejak 2021 menangani berbagai skala proyek
+- Tim profesional berpengalaman dengan kompetensi tinggi
 - Komitmen tepat waktu dan sesuai anggaran
-- Material berkualitas dari supplier terpercaya
-- Garansi untuk setiap pekerjaan
-- Konsultasi gratis untuk proyek Anda
+- Material berstandar SNI dan berkualitas tinggi
+- Garansi hasil pekerjaan untuk kepuasan klien
+- Konsultasi gratis untuk memahami kebutuhan Anda
