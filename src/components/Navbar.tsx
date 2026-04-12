@@ -35,7 +35,7 @@ export default function Navbar({ lang }: NavbarProps) {
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll, { passive: true });
-    setDark(document.documentElement.classList.contains("dark"));
+    setDark(localStorage.getItem("theme") === "dark");
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
